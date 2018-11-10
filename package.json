@@ -1,0 +1,20 @@
+{
+  "name": "eslint-plugin-no-esnext",
+  "version": "0.0.0",
+  "description": "Ban constructs not supported by a particular ES version, while still allowing ES `import`/`export`.",
+  "repository": "github:isiahmeadows/eslint-plugin-no-esnext",
+  "homepage": "https://github.com/isiahmeadows/eslint-plugin-no-esnext#readme",
+  "keywords": ["eslint", "eslintplugin"],
+  "scripts": {
+    "lint": "eslint .",
+    "test": "eslint . && tl"
+  },
+  "author": "Isiah Meadows",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-assert": "^3.0.0",
+    "eslint": "^5.9.0",
+    "eslint-config-isiahmeadows": "^0.1.8",
+    "thallium": "^0.3.11"
+  }
+}

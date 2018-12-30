@@ -90,7 +90,7 @@ const selectors = {
 const ruleMeta = {
     type: "problem",
     docs: {
-        description: "Restrict ES Next stuff",
+        description: "Ban ES Next stuff by version",
     },
     schema: {
         type: "array",
@@ -204,7 +204,7 @@ class SelectorProxyHandler {
 
 module.exports = {
     rules: {
-        "restrict-esnext": {
+        "no-esnext": {
             meta: ruleMeta,
             create: context =>
                 new Proxy(selectors, new SelectorProxyHandler(context)),

@@ -63,24 +63,25 @@ function update(set, func) {
 
 function extractBlacklist(options, isModule) {
     const {
-        ecmaVersion, excludeFeatures,
-        includeFeatures = ["modules"],
+        ecmaVersion,
+        excludeFeatures = isModule ? ["modules"] : [],
+        includeFeatures = [],
     } = options
-    const version = ecmaVersion >= 6 && ecmaVersion < 2015
-        ? ecmaVersion + 2009
-        : ecmaVersion
 
-    let blacklist = new Set(versionBlacklist[version])
+    let blacklist = new Set()
 
-    if (excludeFeatures != null) {
-        for (const feature of excludeFeatures) blacklist.delete(feature)
-    } else if (isModule) {
-        blacklist.delete("modules")
+    if (ecmaVersion != null) {
+        const version = ecmaVersion >= 6 && ecmaVersion < 2015
+            ? ecmaVersion + 2009
+            : ecmaVersion
+
+        for (const feature of versionBlacklist[version]) {
+            blacklist.add(feature)
+        }
     }
 
-    if (includeFeatures) {
-        for (const feature of includeFeatures) blacklist.add(feature)
-    }
+    for (const feature of excludeFeatures) blacklist.delete(feature)
+    for (const feature of includeFeatures) blacklist.add(feature)
 
     blacklist = update(blacklist, (result, name) => {
         const selectors = features[name]

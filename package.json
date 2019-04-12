@@ -19,6 +19,7 @@
   "author": "Isiah Meadows",
   "license": "ISC",
   "devDependencies": {
+    "clean-assert": "^3.0.0",
     "eslint": "^5.9.0",
     "eslint-config-isiahmeadows": "^0.1.8",
     "thallium": "^0.3.11"

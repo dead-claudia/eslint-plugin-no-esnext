@@ -1,5 +1,6 @@
 "use strict"
 
-const {feature, it} = require("../test-util")
+const t = require("thallium")
+const {check} = require("../test-util")
 
-feature("`array-rest-spread`")
+t.testSkip("`array-rest-spread`", () => {})

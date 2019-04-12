@@ -1,86 +1,89 @@
 "use strict"
 
-const {feature, it} = require("../test-util")
+const t = require("thallium")
+const {check} = require("../test-util")
 
-feature("`array-destructuring`", () => {
-    it("warns when it detects array destructuring in `var`", {
+t.test("`array-destructuring`", () => {
+    t.test("warns when in `var`", () => check({
         includeFeatures: ["array-destructuring"],
         code: "var [a, b] = c",
         errors: [
             "Unexpected array destructuring pattern",
         ],
-    })
+    }))
 
-    it("warns when it detects array destructuring in `let`", {
+    t.test("warns when in `let`", () => check({
         includeFeatures: ["array-destructuring"],
         code: "let [a, b] = c",
         errors: [
             "Unexpected array destructuring pattern",
         ],
-    })
+    }))
 
-    it("warns when it detects array destructuring in `const`", {
+    t.test("warns when in `const`", () => check({
         includeFeatures: ["array-destructuring"],
         code: "const [a, b] = c",
         errors: [
             "Unexpected array destructuring pattern",
         ],
-    })
+    }))
 
-    it("warns when it detects array destructuring in assignment", {
+    t.test("warns when in assignment", () => check({
         includeFeatures: ["array-destructuring"],
         code: "[a, b] = c",
         errors: [
             "Unexpected array destructuring pattern",
         ],
-    })
+    }))
 
-    it("allows normal arrays", {
+    t.test("allows normal arrays", () => check({
         includeFeatures: ["array-destructuring"],
         code: "[a, b]",
         errors: [],
-    })
+    }))
 
-    it("warns when it detects array destructuring in `var` in modules", {
-        includeFeatures: ["array-destructuring"],
-        isModule: true,
-        code: "var [a, b] = c",
-        errors: [
-            "Unexpected array destructuring pattern",
-        ],
-    })
+    t.test("in modules", () => {
+        t.test("warns when in `var`", () => check({
+            includeFeatures: ["array-destructuring"],
+            isModule: true,
+            code: "var [a, b] = c",
+            errors: [
+                "Unexpected array destructuring pattern",
+            ],
+        }))
 
-    it("warns when it detects array destructuring in `let` in modules", {
-        includeFeatures: ["array-destructuring"],
-        isModule: true,
-        code: "let [a, b] = c",
-        errors: [
-            "Unexpected array destructuring pattern",
-        ],
-    })
+        t.test("warns when in `let`", () => check({
+            includeFeatures: ["array-destructuring"],
+            isModule: true,
+            code: "let [a, b] = c",
+            errors: [
+                "Unexpected array destructuring pattern",
+            ],
+        }))
 
-    it("warns when it detects array destructuring in `const` in modules", {
-        includeFeatures: ["array-destructuring"],
-        isModule: true,
-        code: "const [a, b] = c",
-        errors: [
-            "Unexpected array destructuring pattern",
-        ],
-    })
+        t.test("warns when in `const`", () => check({
+            includeFeatures: ["array-destructuring"],
+            isModule: true,
+            code: "const [a, b] = c",
+            errors: [
+                "Unexpected array destructuring pattern",
+            ],
+        }))
 
-    it("warns when it detects array destructuring in assignment in modules", {
-        includeFeatures: ["array-destructuring"],
-        isModule: true,
-        code: "[a, b] = c",
-        errors: [
-            "Unexpected array destructuring pattern",
-        ],
-    })
+        t.test("warns when in assignment", () => check({
+            includeFeatures: ["array-destructuring"],
+            isModule: true,
+            code: "[a, b] = c",
+            errors: [
+                "Unexpected array destructuring pattern",
+            ],
+        }))
 
-    it("allows normal arrays in modules", {
-        includeFeatures: ["array-destructuring"],
-        isModule: true,
-        code: "[a, b]",
-        errors: [],
+        t.test("allows normal arrays", () => check({
+            includeFeatures: ["array-destructuring"],
+            isModule: true,
+            code: "[a, b]",
+            errors: [],
+        }))
     })
 })
